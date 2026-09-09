@@ -18,9 +18,8 @@ MODEL_PATH = os.path.join(
 
 IMG_SIZE = (160, 160)
 
-# Maximum display size for uploaded images.
-# This does NOT change the image used for prediction.
-PREVIEW_WIDTH = 320
+# Display size of uploaded image
+PREVIEW_SIZE = 320
 
 
 # ============================================================
@@ -77,7 +76,7 @@ div[data-testid="stDecoration"] {
 
 
 /* =========================================================
-   APP BACKGROUND
+   APPLICATION BACKGROUND
    ========================================================= */
 
 .stApp {
@@ -108,7 +107,7 @@ div[data-testid="stDecoration"] {
    ========================================================= */
 
 .block-container {
-    max-width: 860px;
+    max-width: 900px;
     padding: 3.8rem 1rem 3rem 1rem;
 }
 
@@ -119,7 +118,7 @@ div[data-testid="stDecoration"] {
 
 .hero {
     text-align: center;
-    padding: 0.4rem 0 1.6rem 0;
+    padding: 0.4rem 0 1.7rem 0;
 }
 
 .hero-icon {
@@ -167,11 +166,12 @@ div[data-testid="stDecoration"] {
 
 
 /* =========================================================
-   CARDS
+   GENERAL CARD
    ========================================================= */
 
 .card {
-    background: rgba(17, 23, 34, 0.84);
+    background:
+        rgba(17, 23, 34, 0.84);
 
     border:
         1px solid
@@ -214,6 +214,7 @@ div[data-testid="stDecoration"] {
    ========================================================= */
 
 [data-testid="stFileUploaderDropzone"] {
+
     background:
         rgba(255,255,255,0.025);
 
@@ -223,7 +224,9 @@ div[data-testid="stDecoration"] {
 
     border-radius: 20px;
 
-    padding: 1.15rem 0.7rem;
+    padding:
+        1.15rem
+        0.7rem;
 
     transition:
         background 0.2s ease,
@@ -231,6 +234,7 @@ div[data-testid="stDecoration"] {
 }
 
 [data-testid="stFileUploaderDropzone"]:hover {
+
     background:
         rgba(80,130,255,0.055);
 
@@ -250,31 +254,93 @@ div[data-testid="stDecoration"] {
 
 
 /* =========================================================
-   IMAGE PREVIEW
+   IMAGE + RESULT ROW
    ========================================================= */
 
-.image-container {
-    width: 100%;
+.prediction-row {
     display: flex;
+
+    align-items: stretch;
+
     justify-content: center;
-    align-items: center;
+
+    gap: 1rem;
+
+    margin: 1rem 0;
 }
 
-.image-container img {
-    max-width: 320px !important;
+
+/* =========================================================
+   IMAGE PANEL
+   ========================================================= */
+
+.image-panel {
+
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 320px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        rgba(17, 23, 34, 0.84);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius: 22px;
+
+    padding: 1rem;
+
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,0.20);
+}
+
+.image-panel img {
+
     width: auto !important;
+
     height: auto !important;
+
+    max-width: 320px !important;
+
     max-height: 320px !important;
+
     object-fit: contain !important;
+
     border-radius: 16px !important;
 }
 
 
 /* =========================================================
-   RESULT CARD
+   RESULT PANEL
    ========================================================= */
 
-.result-card {
+.result-panel {
+
+    flex: 1;
+
+    min-width: 0;
+
+    min-height: 320px;
+
+    aspect-ratio: 1 / 1;
+
+    max-width: 320px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
 
     background:
         linear-gradient(
@@ -285,25 +351,33 @@ div[data-testid="stDecoration"] {
 
     border:
         1px solid
-        rgba(255,255,255,0.065);
+        rgba(255,255,255,0.07);
 
-    border-radius: 20px;
+    border-radius: 22px;
 
-    padding: 1.15rem;
+    padding: 1.35rem;
 
-    margin-top: 0.85rem;
+    box-shadow:
+        0 18px 45px
+        rgba(0,0,0,0.22);
 }
 
-.result-top {
+
+/* =========================================================
+   RESULT PANEL CONTENT
+   ========================================================= */
+
+.result-header {
 
     display: flex;
 
     justify-content:
         space-between;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .result-label {
@@ -319,45 +393,94 @@ div[data-testid="stDecoration"] {
     letter-spacing: 0.14em;
 }
 
-.result-confidence {
+.result-confidence-small {
 
     color: #aeb8c7;
 
-    font-size: 0.82rem;
+    font-size: 0.78rem;
 
     white-space: nowrap;
 }
 
-.result-animal {
+.result-center {
 
-    text-align: center;
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex: 1;
+}
+
+.result-emoji {
+
+    font-size: 4.1rem;
+
+    line-height: 1;
+
+    margin-bottom: 0.5rem;
+}
+
+.result-animal {
 
     font-size: clamp(
         2.4rem,
-        11vw,
-        4.2rem
+        8vw,
+        3.8rem
     );
+
+    line-height: 1;
 
     font-weight: 900;
 
     letter-spacing: -0.05em;
+}
 
-    line-height: 1;
+.result-description {
 
-    margin:
-        0.55rem 0
-        0.75rem;
+    color: #8994a5;
+
+    font-size: 0.83rem;
+
+    margin-top: 0.55rem;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   CONFIDENCE
+   ========================================================= */
+
+.confidence-section {
+
+    width: 100%;
+}
+
+.confidence-number {
+
+    text-align: center;
+
+    font-size: 0.86rem;
+
+    color: #aeb8c7;
+
+    margin-bottom: 0.55rem;
 }
 
 .confidence-track {
 
     width: 100%;
 
-    height: 10px;
+    height: 11px;
 
     border-radius: 999px;
 
-    background: #202838;
+    background:
+        #202838;
 
     overflow: hidden;
 }
@@ -371,7 +494,29 @@ div[data-testid="stDecoration"] {
 
 
 /* =========================================================
-   STAT PILLS
+   FILE NAME
+   ========================================================= */
+
+.filename {
+
+    text-align: center;
+
+    color: #7f8a9b;
+
+    font-size: 0.78rem;
+
+    margin-top: 0.65rem;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   STATS
    ========================================================= */
 
 .stats {
@@ -407,6 +552,31 @@ div[data-testid="stDecoration"] {
     color: #aab4c3;
 
     font-size: 0.76rem;
+}
+
+
+/* =========================================================
+   SECTION TITLE
+   ========================================================= */
+
+.section-title {
+
+    font-size: 1.25rem;
+
+    font-weight: 800;
+
+    margin:
+        1.6rem 0
+        0.5rem 0;
+}
+
+.section-description {
+
+    color: #808b9d;
+
+    font-size: 0.88rem;
+
+    margin-bottom: 0.8rem;
 }
 
 
@@ -485,9 +655,10 @@ div[data-testid="stDecoration"] {
    MOBILE
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     .block-container {
+
         padding:
             3.2rem
             0.7rem
@@ -496,51 +667,91 @@ div[data-testid="stDecoration"] {
     }
 
     .hero {
+
         padding-top: 0.2rem;
+
         margin-bottom: 1rem;
     }
 
     .hero-icon {
+
         font-size: 2.4rem;
+
         margin-bottom: 0.55rem;
     }
 
     .hero-subtitle {
+
         font-size: 0.9rem;
     }
 
+
+    /* Stack image and result on phones */
+
+    .prediction-row {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 0.9rem;
+    }
+
+
+    .image-panel {
+
+        width: 100%;
+
+        min-height: auto;
+
+        padding: 0.8rem;
+    }
+
+    .image-panel img {
+
+        max-width: 280px !important;
+
+        max-height: 280px !important;
+    }
+
+
+    .result-panel {
+
+        width: 100%;
+
+        max-width: 320px;
+
+        min-height: 280px;
+
+        aspect-ratio: 1 / 1;
+    }
+
+
     .card {
+
         border-radius: 18px;
+
         padding: 0.95rem;
     }
 
-    .result-card {
-        border-radius: 18px;
-    }
 
     .info-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .result-top {
-        align-items: flex-start;
-    }
-
-    .image-container img {
-        max-width: 280px !important;
-        max-height: 280px !important;
+        grid-template-columns:
+            1fr;
     }
 
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   SMALL PHONES
    ========================================================= */
 
 @media (max-width: 380px) {
 
     .block-container {
+
         padding:
             3rem
             0.55rem
@@ -549,16 +760,27 @@ div[data-testid="stDecoration"] {
     }
 
     .hero-title {
+
         font-size: 2.2rem;
     }
 
-    .result-animal {
-        font-size: 2.6rem;
+    .image-panel img {
+
+        max-width: 245px !important;
+
+        max-height: 245px !important;
     }
 
-    .image-container img {
-        max-width: 250px !important;
-        max-height: 250px !important;
+    .result-panel {
+
+        max-width: 280px;
+
+        min-height: 280px;
+    }
+
+    .result-emoji {
+
+        font-size: 3.5rem;
     }
 
 }
@@ -605,46 +827,50 @@ except Exception as error:
 
 
 # ============================================================
-# PREDICTION
+# PREDICTION FUNCTION
 # ============================================================
 
 def predict_image(image: Image.Image):
+    """
+    Prepare the image exactly as required by the
+    trained TFLite model.
 
-    # Convert to RGB
+    Model input:
+        1 × 160 × 160 × 3
+        float32
+
+    Model output:
+        probability of DOG
+    """
+
     image = image.convert("RGB")
 
-    # Resize for the neural network
-    image = image.resize(IMG_SIZE)
+    image = image.resize(
+        IMG_SIZE
+    )
 
-    # Convert to float32
     image_array = np.asarray(
         image,
         dtype=np.float32
     )
 
-    # Add batch dimension
     image_array = np.expand_dims(
         image_array,
         axis=0
     )
 
-    # Send image to TFLite
     interpreter.set_tensor(
         input_details[0]["index"],
         image_array
     )
 
-    # Run inference
     interpreter.invoke()
 
-    # Read output
     prediction = float(
         interpreter.get_tensor(
             output_details[0]["index"]
         )[0][0]
     )
-
-    # Model output = probability of Dog
 
     if prediction >= 0.5:
 
@@ -774,21 +1000,21 @@ if uploaded_files:
 
 
     # ========================================================
-    # EACH IMAGE
+    # PROCESS EACH IMAGE
     # ========================================================
 
     for uploaded_file in uploaded_files:
 
         try:
 
+            # Load original image
             image = Image.open(
                 uploaded_file
             ).convert("RGB")
 
 
             # ------------------------------------------------
-            # Prediction uses resized copy internally.
-            # Original image remains untouched for display.
+            # Predict
             # ------------------------------------------------
 
             animal, confidence, emoji, accent = (
@@ -811,87 +1037,124 @@ if uploaded_files:
 
 
             # ------------------------------------------------
-            # Image card
+            # Create small preview
             # ------------------------------------------------
 
-            st.html("""
-            <div class="card">
-
-                <div class="image-container">
-            """)
-
-            # Display a thumbnail only.
-            # The original image is NOT modified for prediction.
-
             preview = image.copy()
+
             preview.thumbnail(
-                (PREVIEW_WIDTH, PREVIEW_WIDTH),
+                (
+                    PREVIEW_SIZE,
+                    PREVIEW_SIZE
+                ),
                 Image.Resampling.LANCZOS
             )
 
+
+            # =================================================
+            # IMAGE + PREDICTION SIDE BY SIDE
+            # =================================================
+
+            st.html("""
+            <div class="prediction-row">
+
+                <div class="image-panel">
+            """)
+
+
+            # Display image inside left panel
+
             st.image(
                 preview,
-                width=PREVIEW_WIDTH
+                width=PREVIEW_SIZE
             )
+
 
             st.html(
                 f"""
-                    <div class="upload-note">
-                        {escape(uploaded_file.name)}
-                    </div>
                 </div>
-                """
-            )
 
+                <div class="result-panel">
 
-            # ------------------------------------------------
-            # Result card
-            # ------------------------------------------------
-
-            st.html(
-                f"""
-                <div class="result-card">
-
-                    <div class="result-top">
+                    <div class="result-header">
 
                         <div class="result-label">
                             Prediction
                         </div>
 
-                        <div class="result-confidence">
-                            {percent:.2f}% confidence
+                        <div
+                            class="result-confidence-small"
+                        >
+                            {percent:.2f}%
                         </div>
 
                     </div>
 
-                    <div
-                        class="result-animal"
-                        style="
-                            color:{accent};
-                        "
-                    >
-                        {emoji} {animal}
-                    </div>
 
-                    <div class="confidence-track">
+                    <div class="result-center">
+
+                        <div class="result-emoji">
+                            {emoji}
+                        </div>
 
                         <div
-                            class="confidence-fill"
+                            class="result-animal"
                             style="
-                                width:{percent:.2f}%;
-                                background:{accent};
-                                box-shadow:
-                                    0 0 18px
-                                    {accent}66;
+                                color:{accent};
                             "
-                        ></div>
+                        >
+                            {animal}
+                        </div>
+
+                        <div
+                            class="result-description"
+                        >
+                            The model is
+                            {percent:.2f}% confident
+                            this is a {animal.lower()}.
+                        </div>
+
+                    </div>
+
+
+                    <div class="confidence-section">
+
+                        <div
+                            class="confidence-number"
+                        >
+                            Confidence
+                        </div>
+
+                        <div
+                            class="confidence-track"
+                        >
+
+                            <div
+                                class="confidence-fill"
+                                style="
+                                    width:{percent:.2f}%;
+
+                                    background:
+                                        {accent};
+
+                                    box-shadow:
+                                        0 0 18px
+                                        {accent}66;
+                                "
+                            ></div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                </div>
-                """
+            </div>
+
+            <div class="filename">
+                {escape(uploaded_file.name)}
+            </div>
+            """
             )
 
 
@@ -910,16 +1173,12 @@ if uploaded_files:
     if len(results) > 1:
 
         st.html("""
-        <div class="card">
+        <div class="section-title">
+            Prediction Summary
+        </div>
 
-            <div class="card-title">
-                Prediction Summary
-            </div>
-
-            <div class="card-subtitle">
-                Results for all uploaded images.
-            </div>
-
+        <div class="section-description">
+            Results from all uploaded images.
         </div>
         """)
 
@@ -942,12 +1201,14 @@ if uploaded_files:
 
             st.html(
                 f"""
-                <div class="card"
-                     style="
+                <div
+                    class="card"
+                    style="
                         padding:
                             0.85rem
                             1rem;
-                     ">
+                    "
+                >
 
                     <div style="
                         display:flex;
@@ -966,7 +1227,8 @@ if uploaded_files:
                             white-space:
                                 nowrap;
                         ">
-                            {icon} {filename}
+                            {icon}
+                            {filename}
                         </div>
 
                         <div style="
@@ -985,20 +1247,20 @@ if uploaded_files:
 
 
 # ============================================================
-# MODEL INFORMATION
+# ABOUT THE MODEL
 # ============================================================
 
 st.html("""
+<div class="section-title">
+    About the model
+</div>
+
+<div class="section-description">
+    A fine-tuned MobileNetV2 binary image classifier
+    trained to distinguish cats from dogs.
+</div>
+
 <div class="card">
-
-    <div class="card-title">
-        About the model
-    </div>
-
-    <div class="card-subtitle">
-        A fine-tuned MobileNetV2 binary image classifier
-        trained to distinguish cats from dogs.
-    </div>
 
     <div class="info-grid">
 
@@ -1014,6 +1276,7 @@ st.html("""
 
         </div>
 
+
         <div class="info-box">
 
             <div class="info-value">
@@ -1021,10 +1284,11 @@ st.html("""
             </div>
 
             <div class="info-label">
-                Images
+                Dataset Images
             </div>
 
         </div>
+
 
         <div class="info-box">
 
@@ -1052,6 +1316,7 @@ st.html("""
 <div class="footer">
 
     <b>Cuadrúpedo AI</b>
+
     <br>
 
     MobileNetV2 · TensorFlow Lite · Machine Learning
